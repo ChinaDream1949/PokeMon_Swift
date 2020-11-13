@@ -51,9 +51,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             let palneNode = SCNNode(geometry: SCNPlane(width: imageAchor.referenceImage.physicalSize.width, height: imageAchor.referenceImage.physicalSize.height))
             palneNode.opacity = 0.25
-            palneNode.eulerAngles.x = -.pi/2
+            palneNode.eulerAngles.x = .pi/2
+            
+            /// 多个图片识别
+            ///if imageAchor.referenceImage.name == "eevee" { ... }
+            ///if imageAchor.referenceImage.name == "poker" { ... }
+            ///...
+            
             // 找到模型下的节点
             guard let eevenNode = SCNScene(named: "art.scnassets/eevee.scn")?.rootNode.childNode(withName: "eevee", recursively: true) else {return}
+            eevenNode.eulerAngles.x = -.pi/2
             
             node.addChildNode(palneNode)
             node.addChildNode(eevenNode)
